@@ -1,5 +1,6 @@
 using IdentityChatMailDay.Context;
 using IdentityChatMailDay.Entities;
+using IdentityChatMailDay.Models;
 using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddDbContext<MailContext>();
-builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<MailContext>();
+builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<MailContext>().AddErrorDescriber<CustomIdentityValidator>();
 
 
 builder.Services.AddControllersWithViews();
