@@ -18,8 +18,11 @@ namespace IdentityChatMailDay.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Profile()
+        public async Task<ActionResult> Profile()
         {
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+            ViewBag.v1 = values.Name + "" + values.Surname;
+            ViewBag.v2 = values.Email;
             return View();
         }
 
