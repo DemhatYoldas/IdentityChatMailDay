@@ -26,9 +26,11 @@ namespace IdentityChatMailDay.Controllers
             return View();
         }
 
-        public IActionResult Inbox()
+        public async Task<IActionResult> Inbox()
         {
-            return View();
+            var values = await _userManager.FindByEmailAsync(User.Identity.Name);
+            var messageList=_context.Messages.Where(x=>x.ReceiverEmail==values.Email).ToList();
+            return View(messageList);
         }
 
         public IActionResult Sendbox()

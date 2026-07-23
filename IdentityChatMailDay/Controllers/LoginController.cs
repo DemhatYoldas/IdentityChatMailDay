@@ -25,7 +25,7 @@ namespace IdentityChatMailDay.Controllers
             var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, false, true);
             if (result.Succeeded)
             {
-                return RedirectToAction("Profile", "Message");
+                return RedirectToAction("Inbox", "Message");
             }
             else
             {
